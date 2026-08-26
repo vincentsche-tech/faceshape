@@ -10,7 +10,7 @@ export interface Tool {
   tagline: string;
   blurb: string;
   available: boolean;
-  category: 'features' | 'colors';
+  category: 'features' | 'colors' | 'body';
 }
 
 export const TOOLS: Tool[] = [
@@ -51,7 +51,7 @@ export const TOOLS: Tool[] = [
     type: 'quiz',
     tagline: 'Discover your color season',
     blurb: 'Answer a few questions about your natural coloring to find your season and the shades that flatter you.',
-    available: false,
+    available: true,
     category: 'colors',
   },
   {
@@ -61,7 +61,7 @@ export const TOOLS: Tool[] = [
     type: 'measure',
     tagline: 'Find your body shape',
     blurb: 'Enter your measurements to discover your body shape and get personalized clothing suggestions.',
-    available: false,
-    category: 'colors',
+    available: true,
+    category: 'body',
   },
 ];

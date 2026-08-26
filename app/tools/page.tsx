@@ -4,13 +4,14 @@ import { TOOLS } from '@/lib/tools';
 export const metadata: Metadata = {
   title: 'Beauty Tools — FaceShape AI',
   description:
-    'A growing suite of free, private, in-browser beauty tools: face shape, eye shape and nose shape detectors — plus color analysis and body shape coming soon.',
+    'A growing suite of free, private, in-browser beauty tools: face shape, eye shape and nose shape detectors, plus color analysis and body shape.',
   alternates: { canonical: '/tools' },
 };
 
-const CATS: { key: 'features' | 'colors'; title: string; sub: string }[] = [
+const CATS: { key: 'features' | 'colors' | 'body'; title: string; sub: string }[] = [
   { key: 'features', title: 'Know my features', sub: 'Live detectors that read your facial structure from 478 landmarks' },
-  { key: 'colors', title: 'Find my colors', sub: 'Discover the shades and shapes that flatter you' },
+  { key: 'colors', title: 'Find my colors', sub: 'Discover the shades that flatter you' },
+  { key: 'body', title: 'Know my body', sub: 'Find your body shape and what to wear' },
 ];
 
 export default function ToolsPage() {

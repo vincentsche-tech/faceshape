@@ -50,8 +50,9 @@ const NAV = [
   { href: '/', label: 'Face Shape' },
   { href: '/eye-shape', label: 'Eye Shape' },
   { href: '/nose-shape', label: 'Nose Shape' },
+  { href: '/color-analysis', label: 'Color' },
+  { href: '/body-shape', label: 'Body Shape' },
   { href: '/tools', label: 'All Tools' },
-  { href: '/vs', label: 'Compare' },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
