@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { BODY_SHAPES, getBodyShape, type BodyShapeName } from '@/lib/bodyShapes';
 
 export default function BodyMeasure() {
-  const [unit, setUnit] = useState<'cm' | 'in'>('cm');
+  const [unit, setUnit] = useState<'cm' | 'in'>('in');
   const [s, setS] = useState('');
   const [w, setW] = useState('');
   const [h, setH] = useState('');
@@ -82,11 +82,11 @@ export default function BodyMeasure() {
         <div className="measform">
           <div className="unitrow">
             <span>Unit</span>
-            <button type="button" className={unit === 'cm' ? 'unit on' : 'unit'} onClick={() => setUnit('cm')}>
-              cm
-            </button>
             <button type="button" className={unit === 'in' ? 'unit on' : 'unit'} onClick={() => setUnit('in')}>
               in
+            </button>
+            <button type="button" className={unit === 'cm' ? 'unit on' : 'unit'} onClick={() => setUnit('cm')}>
+              cm
             </button>
           </div>
           <div className="mfields">
