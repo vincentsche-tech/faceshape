@@ -4,6 +4,17 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Adsense from '@/components/Adsense';
 
 const SHAPES = ['Oval', 'Round', 'Square', 'Heart', 'Oblong', 'Diamond', 'Triangle'];
+
+// 结果卡交付化：检测完直接给发型/眼镜/妆容建议预览，引导进完整指南
+const SHAPE_TIPS: Record<string, { hair: string; glasses: string; makeup: string }> = {
+  Oval: { hair: 'Long layers, side-swept bangs', glasses: 'Most frames suit you — try round & oval', makeup: 'Soft contour, lifted cheekbone' },
+  Round: { hair: 'Long layers, volume at crown', glasses: 'Angular & rectangular frames', makeup: 'Contour sides, highlight center' },
+  Square: { hair: 'Soft waves, side part', glasses: 'Round & oval frames soften edges', makeup: 'Blend the jawline contour' },
+  Heart: { hair: 'Chin-length, side bangs', glasses: 'Bottom-heavy frames balance you', makeup: 'Warm cheeks, soft brows' },
+  Oblong: { hair: 'Curtain bangs, volume at sides', glasses: 'Wide round frames', makeup: 'Horizontal cheek highlight' },
+  Diamond: { hair: 'Textured layers, light fringe', glasses: 'Oval & rimless frames', makeup: 'Highlight the cheekbones' },
+  Triangle: { hair: 'Volume at crown, soft layers', glasses: 'Cat-eye & aviator frames', makeup: 'Brighten the upper face' },
+};
 const MODEL =
   'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task';
 const WASM = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.12/wasm';
@@ -14,7 +25,7 @@ function dist(a: any, b: any) {
   return Math.hypot(a.x - b.x, a.y - b.y);
 }
 
-// Prototype-level heuristic from 468 landmarks.
+// Prototype-level heuristic from 478 landmarks.
 function classify(lm: any): { name: string; conf: number } {
   const faceW = dist(lm[234], lm[454]);
   const faceH = dist(lm[10], lm[152]);
@@ -345,7 +356,7 @@ export default function LiveDetector() {
                 {ShieldIcon}100% Private &amp; Secure
               </span>
               <span className="trustbadge">
-                {UserIcon}468 Landmarks
+                {UserIcon}478 Landmarks
               </span>
               <span className="trustbadge">
                 {CpuIcon}Local Processing
@@ -443,28 +454,37 @@ export default function LiveDetector() {
       <section className="resultsec" id="result">
         <div className="wrap">
           <h2>Your result, the instant you detect</h2>
-          <div className="resultcard" aria-live="polite">
-            <div className="rshape">{result ? result.name : '—'}</div>
-            <div className="rconf">
-              {result
-                ? `${result.name} · ${result.conf}% confidence ${
-                    mode === 'camera' ? 'from live camera' : 'from your photo'
-                  }`
-                : 'Open your camera or upload a photo to see your face shape and confidence.'}
-            </div>
-            <div className="chipcol">
+            <div className="resultcard" aria-live="polite">
+              <div className="rshape">{result ? result.name : '—'}</div>
+              <div className="rconf">
+                {result
+                  ? `${result.conf}% confidence · 478 landmarks ${
+                      mode === 'camera' ? 'from live camera' : 'from your photo'
+                    }`
+                  : 'Open your camera or upload a photo to see your face shape and confidence.'}
+              </div>
               {result && (
-                <a className="chip" href={`/face-shapes/${slug}`}>
-                  Try glasses frames
-                </a>
+                <div className="restips">
+                  <div className="rtip">
+                    <span className="rico">💇</span>
+                    <span>{SHAPE_TIPS[result.name].hair}</span>
+                  </div>
+                  <div className="rtip">
+                    <span className="ico">👓</span>
+                    <span>{SHAPE_TIPS[result.name].glasses}</span>
+                  </div>
+                  <div className="rtip">
+                    <span className="ico">💄</span>
+                    <span>{SHAPE_TIPS[result.name].makeup}</span>
+                  </div>
+                </div>
               )}
               {result && (
-                <a className="chip" href={`/face-shapes/${slug}`}>
-                  Try hairstyles
+                <a className="fullguide" href={`/face-shapes/${slug}`}>
+                  View full guide →
                 </a>
               )}
             </div>
-          </div>
           <div className="matchbar">
             {SHAPES.map((s) => (
               <span key={s} className={result && result.name === s ? 'on' : ''}>

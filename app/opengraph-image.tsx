@@ -44,7 +44,7 @@ export default async function Image() {
           Find Your Face Shape in Real Time
         </div>
         <div style={{ fontSize: 28, marginTop: 24, color: 'rgba(255,255,255,0.85)' }}>
-          Free · Private · No photo upload · 468 landmarks mapped in your browser
+          Free · Private · No photo upload · 478 landmarks mapped in your browser
         </div>
         <div
           style={{

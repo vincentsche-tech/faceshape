@@ -19,7 +19,7 @@ const FAQ = [
   },
   {
     q: 'How accurate is the live camera?',
-    a: 'It uses the same 468-point model as photo upload, with live averaging for steadier reads.',
+    a: 'It uses the same 478-point model as photo upload, with live averaging for steadier reads.',
   },
   {
     q: 'Camera or upload — which is more accurate?',
@@ -33,6 +33,16 @@ const FAQ = [
 
 const SHAPES = ['oval', 'round', 'square', 'heart', 'oblong', 'diamond', 'triangle'];
 
+const SHAPE_FIGS: Record<string, string> = {
+  oval: '<svg viewBox="0 0 56 68" width="48" height="58"><ellipse cx="28" cy="34" rx="19" ry="26" fill="#E9E6FB" stroke="#6D5DFC" stroke-width="2.5"/></svg>',
+  round: '<svg viewBox="0 0 56 68" width="48" height="58"><ellipse cx="28" cy="35" rx="23" ry="22" fill="#E9E6FB" stroke="#6D5DFC" stroke-width="2.5"/></svg>',
+  square: '<svg viewBox="0 0 56 68" width="48" height="58"><rect x="8" y="10" width="40" height="46" rx="9" fill="#E9E6FB" stroke="#6D5DFC" stroke-width="2.5"/></svg>',
+  heart: '<svg viewBox="0 0 56 68" width="48" height="58"><path d="M28 8 C14 8 8 19 8 29 C8 43 28 60 28 60 C28 60 48 43 48 29 C48 19 42 8 28 8 Z" fill="#E9E6FB" stroke="#6D5DFC" stroke-width="2.5"/></svg>',
+  oblong: '<svg viewBox="0 0 56 68" width="48" height="58"><ellipse cx="28" cy="34" rx="15" ry="28" fill="#E9E6FB" stroke="#6D5DFC" stroke-width="2.5"/></svg>',
+  diamond: '<svg viewBox="0 0 56 68" width="48" height="58"><polygon points="28,5 49,34 28,63 7,34" fill="#E9E6FB" stroke="#6D5DFC" stroke-width="2.5"/></svg>',
+  triangle: '<svg viewBox="0 0 56 68" width="48" height="58"><polygon points="28,7 51,60 5,60" fill="#E9E6FB" stroke="#6D5DFC" stroke-width="2.5"/></svg>',
+};
+
 const softwareLd = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
@@ -43,7 +53,7 @@ const softwareLd = {
   featureList: [
     'live camera',
     'real-time face detection',
-    '468 facial landmarks',
+    '478 facial landmarks',
     'no upload',
     'browser local processing',
   ],
@@ -107,16 +117,48 @@ export default function HomePage() {
           <h2>How it works in 3 steps</h2>
           <div className="steprow">
             <div className="stepcard">
-              <h3 className="t">1 · Enable camera</h3>
+              <div className="stepnum">01</div>
+              <h3 className="t">Enable camera</h3>
               <div className="d">Tap once and allow webcam access in your browser.</div>
             </div>
             <div className="stepcard">
-              <h3 className="t">2 · Hold still 1 second</h3>
+              <div className="stepnum">02</div>
+              <h3 className="t">Hold still 1 second</h3>
               <div className="d">Keep your face in frame for a single moment.</div>
             </div>
             <div className="stepcard">
-              <h3 className="t">3 · See your shape</h3>
+              <div className="stepnum">03</div>
+              <h3 className="t">See your shape</h3>
               <div className="d">Get your shape, confidence and style tips instantly.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5b. What you get */}
+      <section className="whatget">
+        <div className="wrap">
+          <h2>What you get</h2>
+          <div className="whatgrid">
+            <div className="whatcard">
+              <div className="wico">🪞</div>
+              <div className="wt">Face Shape</div>
+              <div className="wd">Your shape + confidence, live in your browser.</div>
+            </div>
+            <div className="whatcard">
+              <div className="wico">💇</div>
+              <div className="wt">Hairstyles</div>
+              <div className="wd">Cuts that flatter your shape.</div>
+            </div>
+            <div className="whatcard">
+              <div className="wico">👓</div>
+              <div className="wt">Glasses</div>
+              <div className="wd">Frames that suit your face.</div>
+            </div>
+            <div className="whatcard">
+              <div className="wico">💄</div>
+              <div className="wt">Makeup</div>
+              <div className="wd">Contour &amp; blush tips by shape.</div>
             </div>
           </div>
         </div>
@@ -129,10 +171,41 @@ export default function HomePage() {
           <div className="shapegrid">
             {SHAPES.map((s) => (
               <a key={s} href={`/face-shapes/${s}`}>
+                <span className="fig" dangerouslySetInnerHTML={{ __html: SHAPE_FIGS[s] }} />
                 {s.charAt(0).toUpperCase() + s.slice(1)}
               </a>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 6b. Manual measure */}
+      <section className="manual">
+        <div className="wrap">
+          <h2>Measure your face with a ruler</h2>
+          <p className="msub">No webcam? Grab a tape measure and note four numbers.</p>
+          <div className="measgrid">
+            <div className="meas">
+              <div className="ml">Forehead</div>
+              <div className="md">Widest point across your brows.</div>
+            </div>
+            <div className="meas">
+              <div className="ml">Cheekbones</div>
+              <div className="md">Top of cheek to ear.</div>
+            </div>
+            <div className="meas">
+              <div className="ml">Jaw</div>
+              <div className="md">Ear to the chin point.</div>
+            </div>
+            <div className="meas">
+              <div className="ml">Face length</div>
+              <div className="md">Hairline to chin.</div>
+            </div>
+          </div>
+          <p className="mnote">
+            Rule of thumb: if length &gt; width you lean oval/oblong; if width &gt; length you lean
+            round/square; a narrow chin with a wide forehead points to heart.
+          </p>
         </div>
       </section>
 
@@ -143,7 +216,7 @@ export default function HomePage() {
           <div className="qa">
             <div className="q">Is live camera as accurate as uploading a photo?</div>
             <div className="a">
-              Yes. Both run the same 468-point MediaPipe model — live just reads frames continuously
+              Yes. Both run the same 478-point MediaPipe model — live just reads frames continuously
               instead of one still.
             </div>
           </div>

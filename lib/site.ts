@@ -32,5 +32,5 @@ export const SITE = {
   adsensePub: "ca-pub-XXXXXX",
   tagline: "Real-time face shape detector that runs entirely in your browser.",
   description:
-    "Open your camera and see your face shape in real time — no photo upload, no sign-up. Our 468-landmark detector runs in-browser and names your shape.",
+    "Open your camera and see your face shape in real time — no photo upload, no sign-up. Our 478-landmark detector runs in-browser and names your shape.",
 };

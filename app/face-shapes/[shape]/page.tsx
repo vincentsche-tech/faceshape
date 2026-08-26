@@ -83,7 +83,7 @@ export default async function FaceShapePage({ params }: { params: Promise<Params
               <span className="trustbadge primary">
                 {ShieldIcon}100% Private &amp; Secure
               </span>
-              <span className="trustbadge">{UserIcon}468 Landmarks</span>
+              <span className="trustbadge">{UserIcon}478 Landmarks</span>
               <span className="trustbadge">{CpuIcon}Local Processing</span>
               <span className="trustbadge">{LockIcon}Photo Never Leaves Device</span>
             </div>

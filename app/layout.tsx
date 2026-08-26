@@ -96,7 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="wrap fmeta">
             <span>Last reviewed Aug 2026</span>
             <span>
-              Built with Google MediaPipe FaceLandmarker &mdash; 468 landmarks, 100% client-side
+              Built with Google MediaPipe FaceLandmarker &mdash; 478 landmarks, 100% client-side
             </span>
             <a href="/#steps">How it works</a>
           </div>

@@ -25,7 +25,7 @@ const ROWS = [
   { feat: 'Live camera, real-time readout', us: 'Yes — instant, updates as you move', them: 'Photo only — no live preview' },
   { feat: 'Privacy — no image leaves your device', us: 'Yes — 100% in-browser', them: 'Usually requires uploading the photo' },
   { feat: 'Free & no sign-up', us: 'Yes', them: 'Varies by tool' },
-  { feat: 'Landmark precision (468 pts)', us: 'Yes', them: 'Varies by tool' },
+  { feat: 'Landmark precision (478 pts)', us: 'Yes', them: 'Varies by tool' },
   { feat: 'No app install (browser-native)', us: 'Yes — any modern browser', them: 'App download or upload flow' },
   { feat: 'Mobile-friendly', us: 'Yes', them: 'Varies by tool' },
   { feat: 'Instant result (no wait)', us: 'Yes', them: 'Wait for upload + processing' },
@@ -203,7 +203,7 @@ export default function VsPage() {
             <h2>Try the live, private detector</h2>
             <p>Free, no upload, no sign-up. Runs entirely in your browser.</p>
             <div className="privnote">
-              <span className="trustbadge primary">{UserIcon}468 Landmarks</span>
+              <span className="trustbadge primary">{UserIcon}478 Landmarks</span>
               <span className="trustbadge primary">{CpuIcon}Local Processing</span>
             </div>
           </div>
