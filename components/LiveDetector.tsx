@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Adsense from '@/components/Adsense';
+import { FACE_SHAPES } from '@/lib/faceShapes';
 
 const SHAPES = ['Oval', 'Round', 'Square', 'Heart', 'Oblong', 'Diamond', 'Triangle'];
 
@@ -330,6 +331,15 @@ export default function LiveDetector() {
   }, []);
 
   const slug = result ? result.name.toLowerCase() : '';
+  // 结果卡发型建议铺风格标签：合并该脸型男女建议的风格词（去重），与承接页一致
+  const styleTags = result
+    ? Array.from(
+        new Set([
+          ...FACE_SHAPES[slug].hairStyleMen.flat(),
+          ...FACE_SHAPES[slug].hairStyleWomen.flat(),
+        ]),
+      )
+    : [];
   const isLoading = camState === 'loading' || camState === 'detecting';
 
   return (
@@ -467,7 +477,16 @@ export default function LiveDetector() {
                 <div className="restips">
                   <div className="rtip">
                     <span className="rico">💇</span>
-                    <span>{SHAPE_TIPS[result.name].hair}</span>
+                    <div className="rtip-body">
+                      <span className="rtip-txt">{SHAPE_TIPS[result.name].hair}</span>
+                      <div className="rstyletags">
+                        {styleTags.map((t) => (
+                          <span className={`hstyle ${/^avoid/i.test(t) ? 'avoid' : ''}`} key={t}>
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                   <div className="rtip">
                     <span className="ico">👓</span>

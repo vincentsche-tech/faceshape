@@ -284,6 +284,35 @@ export default async function FaceShapePage({ params }: { params: Promise<Params
         </div>
       </section>
 
+      <section className="comparesec" id="compare">
+        <div className="wrap">
+          <h2>How {art} {d.name} face compares to the others</h2>
+          <div className="compsub">
+            Not sure which shape is yours? Here&apos;s what sets {d.name} apart from the other six.
+          </div>
+          <div className="comparegrid">
+            {FACE_SHAPE_ORDER.filter((k) => k !== d.slug).map((k) => {
+              const o = FACE_SHAPES[k];
+              return (
+                <a className="comparecard" key={k} href={`/face-shapes/${k}`}>
+                  <svg viewBox="0 0 200 240" className="cmpfig" aria-hidden="true">
+                    <path
+                      d={o.svg}
+                      fill="none"
+                      stroke="#6D5DFC"
+                      strokeWidth="3"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <div className="cmpname">{o.name}</div>
+                  <div className="cmpdef">{o.shortDef}</div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="shapes" id="shapes">
         <div className="wrap">
           <h2>All 7 face shapes</h2>

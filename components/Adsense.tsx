@@ -6,14 +6,9 @@ import { SITE } from '@/lib/site';
 // 生产启用：把 lib/site.ts 的 adsensePub 换成真实发布商 ID，并给每个广告位分配真实 data-ad-slot，
 // 再在 app/layout.tsx 加载 <Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />，组件即可渲染真实 <ins>。
 export default function Adsense({ slot, className }: { slot: string; className?: string }) {
+  // 占位发布商 (ca-pub-XXXXXX) 未接入时，整站广告位不渲染任何占位框，避免空白块与无效请求。
   const enabled = !SITE.adsensePub.includes('XXXXXX');
-  if (!enabled) {
-    return (
-      <div className={className ?? 'adslot'} aria-label="Advertisement">
-        AdSense — {SITE.adsensePub} ({slot})
-      </div>
-    );
-  }
+  if (!enabled) return null;
   return (
     <ins
       className="adsbygoogle"

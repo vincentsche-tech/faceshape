@@ -18,6 +18,7 @@ export type FaceShape = {
   hairLen: { men: 'Short' | 'Medium' | 'Long'; women: 'Short' | 'Medium' | 'Long' };
   hairStyleMen: string[][];
   hairStyleWomen: string[][];
+  shortDef: string; // 承接页"本脸型 vs 其他脸型"对比小卡用的一句定义
   glasses: string[];
   faqs: FaceShapeFaq[];
 };
@@ -50,6 +51,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
     hairLen: { men: 'Medium', women: 'Long' },
     hairStyleMen: [['Texture', 'Side part'], ['Taper'], ['Volume', 'Length']],
     hairStyleWomen: [['Layers', 'Length'], ['Waves', 'Texture'], ['Bangs', 'Part']],
+    shortDef: 'Balanced length and width, softly rounded — the most versatile shape.',
     glasses: [
       'Aviators and rounded rectangles',
       'Cat-eye frames for a touch of contrast',
@@ -93,6 +95,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
     hairLen: { men: 'Short', women: 'Long' },
     hairStyleMen: [['Volume', 'Height'], ['Bangs'], ['Avoid width']],
     hairStyleWomen: [['Layers', 'Length'], ['Bangs', 'Volume'], ['Asym', 'Length']],
+    shortDef: 'About as wide as it is long, with full cheeks and no angles.',
     glasses: [
       'Rectangular and square frames',
       'Angular, geometric shapes',
@@ -136,6 +139,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
     hairLen: { men: 'Medium', women: 'Medium' },
     hairStyleMen: [['Texture', 'Bangs'], ['Part'], ['Length', 'Movement']],
     hairStyleWomen: [['Layers', 'Jaw'], ['Waves', 'Part'], ['Layers', 'Length']],
+    shortDef: 'Broad forehead and a strong, angular jaw of equal width.',
     glasses: [
       'Round and oval frames to soften',
       'Rimless and light frames',
@@ -179,6 +183,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
     hairLen: { men: 'Medium', women: 'Medium' },
     hairStyleMen: [['Volume', 'Part'], ['Texture', 'Bangs'], ['Avoid sides']],
     hairStyleWomen: [['Length', 'Jaw'], ['Bangs', 'Part'], ['Layers', 'Width']],
+    shortDef: 'Wide forehead and cheekbones tapering to a narrow, pointed chin.',
     glasses: [
       'Bottom-heavy or round frames',
       'Aviators and rimless styles',
@@ -222,6 +227,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
     hairLen: { men: 'Medium', women: 'Short' },
     hairStyleMen: [['Part', 'Low volume'], ['Texture', 'Bangs'], ['Length', 'Avoid height']],
     hairStyleWomen: [['Length', 'Bangs'], ['Layers', 'Width'], ['Volume', 'Sides']],
+    shortDef: 'Noticeably longer than wide, with a straight, narrow cheek line.',
     glasses: [
       'Wider frames with a low bridge',
       'Round frames and decorative temples',
@@ -265,6 +271,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
     hairLen: { men: 'Medium', women: 'Medium' },
     hairStyleMen: [['Texture', 'Bangs'], ['Part', 'Volume'], ['Avoid slick']],
     hairStyleWomen: [['Length', 'Jaw'], ['Bangs', 'Soft'], ['Volume', 'Temples']],
+    shortDef: 'Narrow forehead and chin; cheekbones are the widest point.',
     glasses: [
       'Oval and rimless frames',
       'Cat-eyes that lift the brow',
@@ -308,6 +315,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
     hairLen: { men: 'Medium', women: 'Medium' },
     hairStyleMen: [['Volume', 'Bangs'], ['Texture', 'Jaw'], ['Avoid sides']],
     hairStyleWomen: [['Layers', 'Crown'], ['Bangs', 'Width'], ['Length', 'Jaw']],
+    shortDef: 'Narrow forehead with a broad, strong jaw — widest at the bottom.',
     glasses: [
       'Top-heavy and decorative frames',
       'Cat-eye and browline shapes',
