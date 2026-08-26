@@ -15,6 +15,7 @@ export type FaceShape = {
   svg: string; // SVG path，viewBox 0 0 200 240
   hairMen: string[];
   hairWomen: string[];
+  hairLen: { men: 'Short' | 'Medium' | 'Long'; women: 'Short' | 'Medium' | 'Long' };
   glasses: string[];
   faqs: FaceShapeFaq[];
 };
@@ -44,6 +45,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
       'Soft waves and loose beach waves',
       'Middle part with curtain bangs',
     ],
+    hairLen: { men: 'Medium', women: 'Long' },
     glasses: [
       'Aviators and rounded rectangles',
       'Cat-eye frames for a touch of contrast',
@@ -84,6 +86,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
       'Side-swept bangs and volume at the crown',
       'Asymmetrical cuts that elongate the face',
     ],
+    hairLen: { men: 'Short', women: 'Long' },
     glasses: [
       'Rectangular and square frames',
       'Angular, geometric shapes',
@@ -124,6 +127,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
       'Wavy lobs and side parts',
       'Long layers to balance the strong jaw',
     ],
+    hairLen: { men: 'Medium', women: 'Medium' },
     glasses: [
       'Round and oval frames to soften',
       'Rimless and light frames',
@@ -164,6 +168,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
       'Side-swept bangs to narrow the forehead',
       'Layers that add width at the jaw',
     ],
+    hairLen: { men: 'Medium', women: 'Medium' },
     glasses: [
       'Bottom-heavy or round frames',
       'Aviators and rimless styles',
@@ -204,6 +209,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
       'Layered bobs that add width',
       'Volume on the sides, not the crown',
     ],
+    hairLen: { men: 'Medium', women: 'Short' },
     glasses: [
       'Wider frames with a low bridge',
       'Round frames and decorative temples',
@@ -244,6 +250,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
       'Side-swept bangs to soften the cheekbones',
       'Volume at the temples',
     ],
+    hairLen: { men: 'Medium', women: 'Medium' },
     glasses: [
       'Oval and rimless frames',
       'Cat-eyes that lift the brow',
@@ -284,6 +291,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
       'Side bangs to widen the forehead',
       'Chin-length or longer to soften the jaw',
     ],
+    hairLen: { men: 'Medium', women: 'Medium' },
     glasses: [
       'Top-heavy and decorative frames',
       'Cat-eye and browline shapes',

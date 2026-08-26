@@ -159,9 +159,17 @@ footer .fmeta a{color:#C9C6E8;}
 .hairsec{background:var(--tint);padding:48px 0;}
 .hairsec h2{font-size:28px;font-weight:600;color:var(--head);margin-bottom:8px;}
 .hairsub{font-size:16px;color:var(--muted);margin-bottom:24px;}
+.hairlen{display:flex;flex-direction:column;gap:14px;background:#fff;border-radius:18px;padding:18px 22px;margin-bottom:28px;box-shadow:0 2px 8px rgba(26,26,46,0.04);}
+.hlrow{display:flex;align-items:center;gap:16px;}
+.hlgender{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--head);min-width:96px;}
+.hlgender svg{width:32px;height:38px;}
+.hlbar{display:flex;flex:1;border-radius:12px;overflow:hidden;border:1.5px solid var(--lilac);}
+.hlseg{flex:1;text-align:center;font-size:13px;font-weight:600;padding:11px 0;color:var(--muted);background:#fff;}
+.hlseg.on{background:var(--purple);color:#fff;}
 .hairgrid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
 .haircol h3{font-size:20px;font-weight:600;color:var(--head);margin-bottom:14px;}
-.hairitem{background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:12px;font-size:15px;line-height:1.5;box-shadow:0 2px 8px rgba(26,26,46,0.04);}
+.hairitem{background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:12px;font-size:15px;line-height:1.5;box-shadow:0 2px 8px rgba(26,26,46,0.04);display:flex;flex-direction:column;gap:8px;}
+.hairtag{align-self:flex-start;background:var(--purple);color:#fff;font-size:11px;font-weight:700;padding:3px 11px;border-radius:999px;letter-spacing:.3px;}
 .glasssec{background:#fff;padding:48px 0;}
 .glasssec h2{font-size:28px;font-weight:600;color:var(--head);margin-bottom:24px;}
 .glassgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
@@ -259,6 +267,7 @@ footer .fmeta a{color:#C9C6E8;}
   .measurefig{flex-direction:column;}
   .mf-face{flex:none;}
   .hairgrid{grid-template-columns:1fr;}
+  .hairlen .hlrow{flex-wrap:wrap;}
   .glassgrid{grid-template-columns:1fr;}
   .vsdiff{grid-template-columns:1fr;}
   .scard{grid-template-columns:120px 1fr 56px;gap:10px;}

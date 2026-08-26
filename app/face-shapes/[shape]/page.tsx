@@ -16,6 +16,28 @@ const FRAMES = [
   { name: 'Aviator', svg: <path d="M8 14 Q22 9 36 14 Q37 28 22 30 Q7 28 8 14 Z" fill="none" stroke="#6D5DFC" strokeWidth="2" /> },
 ];
 
+// 发型长度剪影 —— 让 "Short / Medium / Long" 一眼可辨。
+const HAIR_FIGS = {
+  Short: (
+    <svg viewBox="0 0 40 48" aria-hidden="true">
+      <circle cx="20" cy="20" r="11" fill="#F0EEFF" stroke="#6D5DFC" strokeWidth="2" />
+      <path d="M9 18 Q9 7 20 7 Q31 7 31 18 Q28 13 20 13 Q12 13 9 18 Z" fill="#6D5DFC" />
+    </svg>
+  ),
+  Medium: (
+    <svg viewBox="0 0 40 48" aria-hidden="true">
+      <circle cx="20" cy="20" r="11" fill="#F0EEFF" stroke="#6D5DFC" strokeWidth="2" />
+      <path d="M9 18 Q9 7 20 7 Q31 7 31 18 L31 34 Q31 36 29 36 L11 36 Q9 36 9 34 Z" fill="#6D5DFC" />
+    </svg>
+  ),
+  Long: (
+    <svg viewBox="0 0 40 48" aria-hidden="true">
+      <circle cx="20" cy="20" r="11" fill="#F0EEFF" stroke="#6D5DFC" strokeWidth="2" />
+      <path d="M9 18 Q9 7 20 7 Q31 7 31 18 L31 44 Q31 46 29 46 L11 46 Q9 46 9 44 Z" fill="#6D5DFC" />
+    </svg>
+  ),
+};
+
 export function generateStaticParams() {
   return FACE_SHAPE_ORDER.map((shape) => ({ shape }));
 }
@@ -183,11 +205,30 @@ export default async function FaceShapePage({ params }: { params: Promise<Params
         <div className="wrap">
           <h2>Best hairstyles for {art} {d.name} face</h2>
           <div className="hairsub">Long-tail picks that flatter your bone structure.</div>
+          <div className="hairlen">
+            <div className="hlrow">
+              <span className="hlgender">{HAIR_FIGS[d.hairLen.men]}Men</span>
+              <div className="hlbar">
+                <span className={`hlseg ${d.hairLen.men === 'Short' ? 'on' : ''}`}>Short</span>
+                <span className={`hlseg ${d.hairLen.men === 'Medium' ? 'on' : ''}`}>Medium</span>
+                <span className={`hlseg ${d.hairLen.men === 'Long' ? 'on' : ''}`}>Long</span>
+              </div>
+            </div>
+            <div className="hlrow">
+              <span className="hlgender">{HAIR_FIGS[d.hairLen.women]}Women</span>
+              <div className="hlbar">
+                <span className={`hlseg ${d.hairLen.women === 'Short' ? 'on' : ''}`}>Short</span>
+                <span className={`hlseg ${d.hairLen.women === 'Medium' ? 'on' : ''}`}>Medium</span>
+                <span className={`hlseg ${d.hairLen.women === 'Long' ? 'on' : ''}`}>Long</span>
+              </div>
+            </div>
+          </div>
           <div className="hairgrid">
             <div className="haircol">
               <h3>For men</h3>
               {d.hairMen.map((h) => (
                 <div className="hairitem" key={h}>
+                  <span className="hairtag">{d.hairLen.men}</span>
                   {h}
                 </div>
               ))}
@@ -196,6 +237,7 @@ export default async function FaceShapePage({ params }: { params: Promise<Params
               <h3>For women</h3>
               {d.hairWomen.map((h) => (
                 <div className="hairitem" key={h}>
+                  <span className="hairtag">{d.hairLen.women}</span>
                   {h}
                 </div>
               ))}
