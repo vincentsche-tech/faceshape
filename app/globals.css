@@ -134,6 +134,8 @@ h1{font-size:58px;line-height:1.05;font-weight:600;color:var(--head);letter-spac
 footer{background:#11111E;color:#9A9AB0;padding:30px 0;font-size:14px;}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
 footer a{color:#C9C6E8;}
+footer .fmeta{margin-top:14px;font-size:13px;color:#7C7C95;gap:18px;align-items:center;flex-wrap:wrap;}
+footer .fmeta a{color:#C9C6E8;}
 
 /* face-shape subpage */
 .shapehero{background:var(--tint);position:relative;overflow:hidden;padding:64px 0;}

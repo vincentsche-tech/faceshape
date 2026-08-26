@@ -24,6 +24,28 @@ export const metadata: Metadata = {
   },
 };
 
+const siteLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      description: SITE.description,
+      inLanguage: 'en-US',
+      datePublished: '2026-08-26',
+      dateModified: '2026-08-26',
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE.url}/#organization`,
+      name: SITE.name,
+      url: SITE.url,
+    },
+  ],
+};
+
 const NAV = [
   { href: '/', label: 'Detector' },
   { href: '/#detect', label: 'Camera' },
@@ -71,7 +93,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/#faq">FAQ</a>
             </span>
           </div>
+          <div className="wrap fmeta">
+            <span>Last reviewed Aug 2026</span>
+            <span>
+              Built with Google MediaPipe FaceLandmarker &mdash; 468 landmarks, 100% client-side
+            </span>
+            <a href="/#steps">How it works</a>
+          </div>
         </footer>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
+        />
       </body>
     </html>
   );

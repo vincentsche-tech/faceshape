@@ -84,17 +84,17 @@ export default function HomePage() {
           <h2>Why live camera beats upload</h2>
           <div className="diffrow">
             <div className="diffcard">
-              <div className="t">Instant feedback</div>
+              <h3 className="t">Instant feedback</h3>
               <div className="d">
                 See your shape the moment the camera opens — no waiting, no upload.
               </div>
             </div>
             <div className="diffcard">
-              <div className="t">Try angles live</div>
+              <h3 className="t">Try angles live</h3>
               <div className="d">Turn your head and watch the readout respond in real time.</div>
             </div>
             <div className="diffcard">
-              <div className="t">No photo hunt</div>
+              <h3 className="t">No photo hunt</h3>
               <div className="d">Skip scrolling your album for the one good selfie.</div>
             </div>
           </div>
@@ -107,15 +107,15 @@ export default function HomePage() {
           <h2>How it works in 3 steps</h2>
           <div className="steprow">
             <div className="stepcard">
-              <div className="t">1 · Enable camera</div>
+              <h3 className="t">1 · Enable camera</h3>
               <div className="d">Tap once and allow webcam access in your browser.</div>
             </div>
             <div className="stepcard">
-              <div className="t">2 · Hold still 1 second</div>
+              <h3 className="t">2 · Hold still 1 second</h3>
               <div className="d">Keep your face in frame for a single moment.</div>
             </div>
             <div className="stepcard">
-              <div className="t">3 · See your shape</div>
+              <h3 className="t">3 · See your shape</h3>
               <div className="d">Get your shape, confidence and style tips instantly.</div>
             </div>
           </div>
@@ -168,15 +168,15 @@ export default function HomePage() {
         <div className="wrap">
           <h2>Why this is the best online-camera face shape detector</h2>
           <div className="trustbar">
-            <div className="t">Free and unlimited — no credits, no paywall, no sign-up.</div>
+            <h3 className="t">Free and unlimited — no credits, no paywall, no sign-up.</h3>
           </div>
           <div className="trustbar">
-            <div className="t">Real-time, not a snapshot — watch results update as you move.</div>
+            <h3 className="t">Real-time, not a snapshot — watch results update as you move.</h3>
           </div>
           <div className="trustbar">
-            <div className="t">
+            <h3 className="t">
               Runs locally in your browser — your camera feed never leaves the device.
-            </div>
+            </h3>
           </div>
         </div>
       </section>
