@@ -166,6 +166,26 @@ footer .fmeta a{color:#C9C6E8;}
 .glasssec h2{font-size:28px;font-weight:600;color:var(--head);margin-bottom:24px;}
 .glassgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
 .glassitem{background:var(--lilac);border-radius:16px;padding:20px;font-size:15px;line-height:1.5;font-weight:500;color:var(--head);}
+/* measurement diagram (featsec) */
+.featwrap{display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:center;}
+.measurefig{background:#fff;border-radius:20px;padding:20px;display:flex;gap:18px;align-items:center;box-shadow:0 8px 24px rgba(26,26,46,0.06);}
+.mf-face{flex:0 0 168px;}
+.mf-face svg{width:168px;height:200px;display:block;}
+.mf-face line{stroke-width:2.5;stroke-linecap:round;}
+.ml-for{stroke:#6D5DFC;} .ml-che{stroke:#E86FB0;} .ml-jaw{stroke:#3FB98A;} .ml-len{stroke:#F5A623;}
+.mf-legend{flex:1;display:flex;flex-direction:column;gap:12px;}
+.mf-row{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.45;color:var(--body);}
+.mf-row b{color:var(--head);font-weight:600;}
+.mf-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.mf-dot.for{background:#6D5DFC;} .mf-dot.che{background:#E86FB0;} .mf-dot.jaw{background:#3FB98A;} .mf-dot.len{background:#F5A623;}
+/* frame glossary (glasssec) */
+.glasssub{font-size:15px;color:var(--muted);margin-bottom:18px;}
+.framegloss{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:28px;}
+.framechip{display:flex;flex-direction:column;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--lilac);border-radius:14px;padding:12px 10px;width:92px;}
+.framechip svg{width:44px;height:40px;}
+.framechip span{font-size:12px;font-weight:600;color:var(--head);}
+.glassitem.good{background:var(--lilac);border-left:4px solid var(--purple);}
+.glassitem.avoid{background:#FFF1F0;border-left:4px solid #E5484D;color:#7A2E2E;font-weight:500;}
 .shapegrid a.cur{color:var(--muted);pointer-events:none;}
 
 /* what-you-get */
@@ -235,6 +255,9 @@ footer .fmeta a{color:#C9C6E8;}
   .shapehero .wrap{flex-direction:column;}
   .shapeleft{flex:none;max-width:100%;}
   .shapefigure{width:100%;flex:none;}
+  .featwrap{grid-template-columns:1fr;}
+  .measurefig{flex-direction:column;}
+  .mf-face{flex:none;}
   .hairgrid{grid-template-columns:1fr;}
   .glassgrid{grid-template-columns:1fr;}
   .vsdiff{grid-template-columns:1fr;}
