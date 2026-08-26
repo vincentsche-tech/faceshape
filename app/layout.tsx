@@ -47,11 +47,11 @@ const siteLd = {
 };
 
 const NAV = [
-  { href: '/', label: 'Detector' },
-  { href: '/#detect', label: 'Camera' },
-  { href: '/face-shapes/oval', label: '7 Shapes' },
+  { href: '/', label: 'Face Shape' },
+  { href: '/eye-shape', label: 'Eye Shape' },
+  { href: '/nose-shape', label: 'Nose Shape' },
+  { href: '/tools', label: 'All Tools' },
   { href: '/vs', label: 'Compare' },
-  { href: '/#faq', label: 'FAQ' },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -89,7 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="wrap">
             <span>© 2026 {SITE.name}</span>
             <span>
-              <a href="/face-shapes/oval">7 Shapes</a> · <a href="/vs">Compare</a> ·{' '}
+              <a href="/tools">All Tools</a> · <a href="/face-shapes/oval">7 Shapes</a> · <a href="/vs">Compare</a> ·{' '}
               <a href="/#faq">FAQ</a>
             </span>
           </div>
