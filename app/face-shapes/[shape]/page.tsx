@@ -226,18 +226,32 @@ export default async function FaceShapePage({ params }: { params: Promise<Params
           <div className="hairgrid">
             <div className="haircol">
               <h3>For men</h3>
-              {d.hairMen.map((h) => (
+              {d.hairMen.map((h, i) => (
                 <div className="hairitem" key={h}>
-                  <span className="hairtag">{d.hairLen.men}</span>
+                  <div className="hairmeta">
+                    <span className="hairtag">{d.hairLen.men}</span>
+                    {d.hairStyleMen[i].map((s) => (
+                      <span className={`hstyle ${/^avoid/i.test(s) ? 'avoid' : ''}`} key={s}>
+                        {s}
+                      </span>
+                    ))}
+                  </div>
                   {h}
                 </div>
               ))}
             </div>
             <div className="haircol">
               <h3>For women</h3>
-              {d.hairWomen.map((h) => (
+              {d.hairWomen.map((h, i) => (
                 <div className="hairitem" key={h}>
-                  <span className="hairtag">{d.hairLen.women}</span>
+                  <div className="hairmeta">
+                    <span className="hairtag">{d.hairLen.women}</span>
+                    {d.hairStyleWomen[i].map((s) => (
+                      <span className={`hstyle ${/^avoid/i.test(s) ? 'avoid' : ''}`} key={s}>
+                        {s}
+                      </span>
+                    ))}
+                  </div>
                   {h}
                 </div>
               ))}
