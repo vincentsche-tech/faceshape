@@ -28,13 +28,11 @@ npm run start    # 生产服务
 ```
 
 ## 上线前 Checklist（2 个 TODO）
-1. **域名（已解耦，可后补）**：`lib/site.ts` 的 `SITE.url` 改为环境变量驱动，优先级
-   `NEXT_PUBLIC_SITE_URL` → `VERCEL_URL`（Vercel 自动 `*.vercel.app`）→ 占位兜底。
-   → **未注册域名也能先部署到 Vercel 拿真实 HTTPS 验证**（摄像头/AdSense-ready）。
-   → 注册好域名后，仅在 Vercel 项目设 `NEXT_PUBLIC_SITE_URL=https://www.xxx.com` 即可，无需改代码。
-   （Vercel 强制裸域 308→www，URL 以 www 为准。）
-2. **变现**：把 `lib/site.ts` 的 `adsensePub` 换成真实 `ca-pub-xxxxxxxx`；并为每个广告位分配真实
-   `data-ad-slot`；再在 `app/layout.tsx` 加载
+1. **域名（已上线）**：`lib/site.ts` 的 `SITE.url` 走环境变量 `NEXT_PUBLIC_SITE_URL`。
+   解析优先级：此变量 → 生产未设则告警 + 回退 `localhost`（不依赖 `VERCEL_URL` 兜底，
+   避免 Vercel 改主域后旧域 302 到 vercel.com/login 的坑）。当前生产值 `https://www.faceshapeai.app`。
+2. **变现**：把 `lib/site.ts` 的 `adsensePub` 字段（目前是占位 `ca-pub-XXXXXX`）换成真实
+   `ca-pub-xxxxxxxx`；并为每个广告位分配真实 `data-ad-slot`；再在 `app/layout.tsx` 加载
    `<Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />`（组件即渲染真实 `<ins>`）。
 
 ## 部署 SOP（建站 SOP 清单 v1.0）
@@ -47,5 +45,5 @@ GEO 前置：robots 已放行 LLM crawler，便于 AI 概述引用。
   动态 sitemap 已含这些 URL，无需日常重提交。
 
 ## 说明
-- `classify()` 为原型级启发式（468 landmark 比例判定），生产建议用标注数据集校准。
+- `classify()` 为原型级启发式（478 landmark 比例判定），生产建议用标注数据集校准。
 - 摄像头/上传/模型加载均为客户端逻辑（`components/LiveDetector.tsx`，`'use client'`），构建期不执行。

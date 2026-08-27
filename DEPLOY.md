@@ -37,8 +37,8 @@ git push -u origin main
 1. 打开 vercel.com → **Add New** → **Project**
 2. **Import Git Repository** → 选刚建的 `face-shape-detector` → **Deploy**
 3. Framework 自动识别为 **Next.js**，Build 命令用 `next build`，无需改
-4. 部署完得到公网 HTTPS 链接：`https://<project>.vercel.app`
-5. 你本机浏览器打开该链接 → **实测摄像头实时检测**
+4. 部署完得到公网 HTTPS 链接（生产域 `https://www.faceshapeai.app`，预览域 `https://<project>.vercel.app`）
+5. 你本机浏览器打开生产链接 → **实测摄像头实时检测**
 
 ---
 
@@ -46,8 +46,8 @@ git push -u origin main
 
 | 变量 | 值 | 说明 |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | `https://www.faceshapeai.com` | 没域名先用 `.vercel.app` 也行；`SITE.url` 解析优先级：此变量 → `VERCEL_URL` → 占位兜底 |
-| `NEXT_PUBLIC_ADSENSE_PUB` | `ca-pub-xxxxxx` | 没 AdSense 就留空，组件只渲染占位 div，不触发无效请求 |
+| `NEXT_PUBLIC_SITE_URL` | `https://www.faceshapeai.app` | 生产自定义域；`SITE.url` 解析优先级：此变量 → 生产未设则告警 + 回退 `localhost`（不依赖 `VERCEL_URL` 兜底） |
+| `adsensePub`（在 `lib/site.ts` 改） | `ca-pub-xxxxxx` | 没 AdSense 就保留 `ca-pub-XXXXXX` 占位，组件只渲染占位 div 不触发无效请求 |
 
 配完 **Redeploy** 即可。改这两个变量**不需要改代码**。
 
@@ -65,7 +65,7 @@ git push -u origin main
 
 ## 注意事项
 
-- **HTTPS 是摄像头硬前提**：`localhost` 和 `*.vercel.app` 都是安全源可调用 `getUserMedia`；自定域必须配 SSL 否则摄像头被禁。
+- **HTTPS 是摄像头硬前提**：任何 HTTPS 域（`localhost`、`*.vercel.app`、已签 SSL 的自定义域）都属安全源可调用 `getUserMedia`；自定域必须配 SSL 否则摄像头被禁。
 - **MediaPipe 模型**从 jsdelivr CDN 运行时拉取，需联网；无 GPU 自动降级 CPU delegate。
 - **哥飞红线**：新页上线走 GSC *URL Inspection → Request Indexing* 加速发现，**不重提交 sitemap**。
 - **License**：MediaPipe 模型为 **MPL 2.0**，可商用，须保留版权声明。
