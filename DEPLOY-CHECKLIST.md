@@ -123,8 +123,87 @@ python scripts/audit_seo.py
 
 ---
 
+## 7. 博客 / 内容矩阵范式（数据驱动）
+
+**适用场景**：支撑博客、对比页、扩展内容矩阵等**与工具页抢意图则让位**的内容。
+
+**三个反踩坑原则**：
+1. **选题互补工具页**：避开「检测/工具」意图（那已被 `/face-shape` 等覆盖），专攻「how to / vs / for X」长尾
+2. **每篇必须导流**：底部「相关工具」CTA 卡链回 Face/Eye/Nose/Color/Body，形成内链权重闭环
+3. **复用视觉 token**：复用 lilac/purple 主题 + Inter，**不要另起设计语言**
+
+**数据驱动骨架**（以博客为例，照搬到对比页/Hub 子页都行）：
+
+```
+app/blog/page.tsx              # 列表页（SSG，遍历数据源）
+app/blog/[slug]/page.tsx       # 详情页（generateStaticParams 全部 SSG）
+lib/blogPosts.ts               # ← 数据源（一切内容在这里）
+app/sitemap.ts                 # 加 BLOG 路由
+app/layout.tsx                 # Nav + Footer 加入口
+```
+
+**`lib/blogPosts.ts` 每条记录的字段约束**：
+
+| 字段 | 约束 | 来源§1.5 重申 |
+|---|---|---|
+| `title` | ≤ 46 字符（加品牌后缀 ≤ 60）| §1.5 |
+| `description` | ≤ 155 字符（留 5 buffer）| §1.5 |
+| `slug` | URL 友好短词，2-5 段 `-` 分隔 | — |
+| `excerpt` | ≤ 160 字符，给列表页卡片用 | — |
+| `readTime` | "X min read"，按 200 wpm 估算 | — |
+| `category` | 单选枚举，避免分类爆炸 | — |
+| `relatedTools` | 1-3 个 `{href, label}`，必须有导流目标 | §5 内链闭环 |
+| `body` | 数组，元素是 `{type, text}` 段落；不放 inline JSX 让序列化稳定 | — |
+| `publishDate` | ISO 字符串，便于排序和 future 排序 | — |
+
+**新增一篇博客的 SOP**：
+
+1. 在 `lib/blogPosts.ts` 数组末尾 push 一条记录（标题/描述按 §1.5 长度）
+2. `app/blog/[slug]/page.tsx` 的 `generateStaticParams` 自动接住，无需改代码
+3. `app/sitemap.ts` 自动接住（`BLOG_SLUGS.map(...)`）
+4. `npx tsc --noEmit && npx next build` —— 验证新路由 SSG 成功
+5. `python scripts/audit_seo.py` —— 验证新页 SEO 长度合规
+6. 推送 → Vercel 自动重部署 → 新 URL 收录
+
+> 不新建独立路由文件 = 加内容 = 加数据 = 0 文件改动。这一条可作为后续所有"内容驱动页"的范式。
+
+---
+
+## 8. SEO 审计脚本（部署前必跑）
+
+**位置**：`scripts/audit_seo.py`
+
+**设计意图**：替代记忆性标题长度检查，自动读 sitemap.xml 覆盖全部页面，**以后加页自动覆盖审计范围**。
+
+**用法**：
+
+```bash
+python scripts/audit_seo.py
+```
+
+**输出约定**：
+- `OK` = 该页 T/D 都合规
+- `T[XX]` = Title 超限当前 XX 字符
+- `D[XX]` = Description 超限当前 XX 字符
+- `404` / `ERR` = 该 URL 抓取失败（sitemap/路由不一致）
+
+**集成进 PR / Deploy 流程**：
+- 部署前本地跑一次，0 个 `T[` / `D[` 标签才能 push
+- CI（如未来接入）可在 GitHub Action 加 `python scripts/audit_seo.py` 步骤，失败则 block merge
+
+**审计规则同步**：
+- 长度阈值在脚本里硬编码（60/160），如未来调品牌后缀长度（如换成 `· FaceShape AI powered by X`），**脚本里这俩数字也要同步改**
+- 软阈值（描述在 100-160 之间打 `✓`）只用于观察，不挡部署
+
+**审计脚本也曾踩坑**：早期版 hardcoded 14 个手动维护的路径，加博客后立刻陈旧；改成读 sitemap.xml 后永远跟站点同步。
+
+---
+
 ## 变动记录
 
 | 日期 | 变更 |
 |---|---|
 | 2026-08-27 | 新建本活文档；收敛 AdSense/GA/域名/SEO 收尾流程与踩坑 |
+| 2026-08-27 | 加 §1.5 SEO 长度规则 + `scripts/audit_seo.py` 自动审计 |
+| 2026-08-27 | 加 §6 CSS Grid `minmax(0,1fr)` 规则 |
+| 2026-08-27 | 加 §7 博客数据驱动范式 + §8 SEO 审计脚本 SOP（部署前必跑） |
