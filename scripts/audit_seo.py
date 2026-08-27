@@ -1,58 +1,56 @@
 """SEO title / desc length audit for faceshapeai.app.
 
-Hits every public page and reports:
-- T_len (Google typically truncates titles after ~60 chars)
-- D_len (Google typically truncates descriptions after ~160 chars)
-- Flag: 'OK' / 'T[XX]' / 'D[XX]' if over limit
+Reads every URL from the live sitemap.xml (so new pages are covered
+automatically), then reports each page's <title> and meta description
+length against Google limits:
+  - title  rendered <= 60  (input <= 46 because layout adds ' · FaceShape AI')
+  - desc   <= 160
 
-Usage:
-    python scripts/audit_seo.py
-
-Acceptance rule (from DEPLOY-CHECKLIST.md section 1.5):
-- Title INPUT ≤ 46 chars (renders ≤ 60 after brand suffix)
-- Description ≤ 160 chars
-
-Run this BEFORE pushing metadata changes. Any T[XX]/D[XX] flag = fail.
+Run:  python scripts/audit_seo.py
 """
-import urllib.request, re
+import urllib.request
+import re
+import xml.etree.ElementTree as ET
 
-PATHS = [
-    '/', '/eye-shape', '/nose-shape',
-    '/color-analysis', '/body-shape', '/tools',
-    '/face-shapes/oval', '/face-shapes/round', '/face-shapes/square',
-    '/face-shapes/heart', '/face-shapes/oblong', '/face-shapes/diamond',
-    '/face-shapes/triangle',
-    '/vs',
-]
+NS = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
+SITEMAP = 'https://www.faceshapeai.app/sitemap.xml'
 
-T_LIMIT = 60
-D_LIMIT = 160
+try:
+    raw = urllib.request.urlopen(SITEMAP, timeout=25).read()
+    urls = [u.text for u in ET.fromstring(raw).iter(f'{NS}loc')]
+except Exception as e:
+    print(f'sitemap fetch failed: {e}')
+    urls = []
 
-print(f"{'PATH':<35} {'T':>4} {'D':>5} {'FLAG':<14} CONTENT")
-print('-' * 120)
 fail_count = 0
-for p in PATHS:
-    url = 'https://www.faceshapeai.app' + p
+print(f"{'URL (path)':<45} {'T':<4} {'D':<5} {'FLAG':<12} TITLE")
+print('-' * 135)
+for url in urls:
+    path = url.replace('https://www.faceshapeai.app', '')
     try:
-        html = urllib.request.urlopen(url, timeout=20).read().decode('utf-8', errors='ignore')
+        html = urllib.request.urlopen(url, timeout=25).read().decode('utf-8', errors='ignore')
     except Exception as e:
-        print(f'{p:<35} ERR  {e}')
+        print(f'{path:<45} ERR  {e}')
         fail_count += 1
         continue
     m_t = re.search(r'<title>([^<]*)</title>', html)
     m_d = re.search(r'<meta name="description" content="([^"]*)"', html)
     title = m_t.group(1) if m_t else ''
     desc = m_d.group(1) if m_d else ''
-    t_len = len(title)
-    d_len = len(desc)
+    t_len, d_len = len(title), len(desc)
     flag = []
-    if t_len > T_LIMIT: flag.append(f'T[{t_len}]'); fail_count += 1
-    if d_len > D_LIMIT: flag.append(f'D[{d_len}]'); fail_count += 1
-    if not flag: flag = ['OK']
-    preview = title[:60] + ('...' if len(title) > 60 else '')
-    print(f'{p:<35} {t_len:>4} {d_len:>5} {",".join(flag):<14} | {preview}')
+    if t_len > 60:
+        flag.append(f'T[{t_len}]')
+        fail_count += 1
+    if d_len > 160:
+        flag.append(f'D[{d_len}]')
+        fail_count += 1
+    if not flag:
+        flag = ['OK']
+    shown = title[:58] + ('…' if len(title) > 58 else '')
+    print(f'{path:<45} {t_len:<4} {d_len:<5} {",".join(flag):<12} | {shown}')
 
-print('-' * 120)
-print(f'TOTAL: {len(PATHS)} pages, {fail_count} failing flag(s).')
+print('-' * 135)
+print(f'TOTAL: {len(urls)} pages, {fail_count} failing flag(s).')
 print('Standard: Title ≤ 60, Description ≤ 160.')
-print('Hint: layout.tsx brand suffix "%s · FaceShape AI" adds 14 chars — design inputs at ≤ 46.')
+print('Hint: layout.tsx brand suffix " · FaceShape AI" adds 14 chars — design inputs at ≤ 46.')
