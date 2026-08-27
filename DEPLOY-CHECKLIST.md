@@ -39,6 +39,35 @@
 
 ---
 
+## 1.5. SEO Title / Description 长度（Gotcha ⚠️）
+
+**踩坑复盘（2026-08-27 一次全站返工）**：
+
+- 11 个页面（4 个工具 + 7 个脸型子页）title/description 超 Google 显示上限
+- 4 工具 T: 65-73（标准 ≤60）
+- 7 脸型 T+D 双超：T 72-76 / D 168-174（标准 ≤160）
+
+**根因**：`app/layout.tsx` 的 `title.template = '%s · FaceShape AI'` 自动加 14 字符品牌后缀，**所以每页 title 输入 ≤ 46 字符**，否则渲染出来超限。
+
+**长度规则**（设计/`lib/*.ts` 时按这个走）：
+
+| 项 | 上限 | 加成后 |
+|---|---|---|
+| Title 输入 | **≤ 46 字符** | + 14 (品牌后缀) = **≤ 60** |
+| Description | ≤ 160 字符 | — |
+
+**验收脚本**（每次部署前跑一次，已固化在 `scripts/audit_seo.py`）：
+
+```bash
+python scripts/audit_seo.py
+```
+
+输出任意 `T[XX]` 或 `D[XX]` 标签 = 超限，回对应文件改。
+
+**新增页面时**：先把元数据写进 `lib/<feature>.ts` 数据源（标题 ≤ 46、描述 ≤ 155 给 5 字符 buffer），再让 `app/<feature>/page.tsx` 通过 `generateMetadata` 或 metadata 静态字段拉取。
+
+---
+
 ## 2. AdSense 变现（当前占位：未接）
 
 **代码现状**（`lib/site.ts` + `components/Adsense.tsx`）：
