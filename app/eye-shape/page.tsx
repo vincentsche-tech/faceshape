@@ -4,12 +4,12 @@ import { TOOLS } from '@/lib/tools';
 import EyeTool from '@/components/EyeTool';
 
 export const metadata: Metadata = {
-  title: 'Eye Shape Detector Online Camera — Live & Free',
+  title: 'Eye Shape Detector — Live & Free',
   description:
     'Open your camera and detect your eye shape, canthal tilt and setting in real time. 478 landmarks, 100% in-browser, no photo upload, no sign-up.',
   alternates: { canonical: '/eye-shape' },
   openGraph: {
-    title: 'Eye Shape Detector Online Camera — Live & Free',
+    title: 'Eye Shape Detector — Live & Free',
     description: SITE.description,
     url: `${SITE.url}/eye-shape`,
   },

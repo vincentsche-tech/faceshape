@@ -5,12 +5,12 @@ import { BODY_SHAPES, BODY_SHAPE_ORDER } from '@/lib/bodyShapes';
 import BodyMeasure from '@/components/BodyMeasure';
 
 export const metadata: Metadata = {
-  title: 'Body Shape Calculator — Find Your Shape & Styling Tips',
+  title: 'Body Shape Calculator — Find Your Shape',
   description:
     'Enter your shoulder, waist and hip measurements to find your body shape and get personalized clothing suggestions. Free, private, in-browser — no sign-up.',
   alternates: { canonical: '/body-shape' },
   openGraph: {
-    title: 'Body Shape Calculator — Find Your Shape & Styling Tips',
+    title: 'Body Shape Calculator — Find Your Shape',
     description: SITE.description,
     url: `${SITE.url}/body-shape`,
   },

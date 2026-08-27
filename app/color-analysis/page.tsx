@@ -5,12 +5,12 @@ import { COLOR_SEASONS } from '@/lib/colorSeasons';
 import ColorQuiz from '@/components/ColorQuiz';
 
 export const metadata: Metadata = {
-  title: 'Color Analysis Quiz — Find Your Season & Palette',
+  title: 'Color Analysis Quiz — Find Your Season',
   description:
     'Answer 8 quick questions to discover your color season and the shades that flatter you. Free, private, in-browser — no sign-up, no photo upload.',
   alternates: { canonical: '/color-analysis' },
   openGraph: {
-    title: 'Color Analysis Quiz — Find Your Season & Palette',
+    title: 'Color Analysis Quiz — Find Your Season',
     description: SITE.description,
     url: `${SITE.url}/color-analysis`,
   },

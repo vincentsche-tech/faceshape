@@ -4,12 +4,12 @@ import { TOOLS } from '@/lib/tools';
 import NoseTool from '@/components/NoseTool';
 
 export const metadata: Metadata = {
-  title: 'Nose Shape Detector Online Camera — Live & Free',
+  title: 'Nose Shape Detector — Live & Free',
   description:
     'Map your nose width and length proportions live in your browser. 478 landmarks, 100% in-browser, no photo upload, no sign-up.',
   alternates: { canonical: '/nose-shape' },
   openGraph: {
-    title: 'Nose Shape Detector Online Camera — Live & Free',
+    title: 'Nose Shape Detector — Live & Free',
     description: SITE.description,
     url: `${SITE.url}/nose-shape`,
   },
