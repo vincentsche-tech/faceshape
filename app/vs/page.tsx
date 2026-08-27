@@ -4,10 +4,10 @@ import { ShieldIcon, UserIcon, CpuIcon, LockIcon } from '@/components/icons';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'FaceShape AI vs Other Face Shape Detectors — Live, Private & Free',
+    absolute: 'FaceShape AI vs Face Detectors — Live & Free',
   },
   description:
-    'Compare FaceShape AI with other face shape detectors. See why a real-time, in-browser, no-upload detector beats photo-based tools — and which alternatives people consider.',
+    'Compare FaceShape AI with other detectors. See why a real-time, in-browser, no-upload tool beats photo-based face shape apps.',
   alternates: { canonical: '/vs' },
   openGraph: {
     title: 'FaceShape AI vs Other Face Shape Detectors',

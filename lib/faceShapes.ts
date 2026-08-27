@@ -27,7 +27,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
   oval: {
     slug: 'oval',
     name: 'Oval',
-    title: 'Oval Face Shape — Hairstyles & Glasses',
+    title: 'Oval Face Shape — Hair & Glasses',
     desc: 'Balanced proportions, rounded jaw and hairline. See best hairstyles for men and women, plus glasses that flatter the oval face shape.',
     h1: 'Oval Face Shape',
     sub: 'The most versatile face shape — balanced, softly rounded, and flattered by almost any cut. See your features, best hairstyles and glasses.',
@@ -75,7 +75,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
   round: {
     slug: 'round',
     name: 'Round',
-    title: 'Round Face Shape — Hairstyles & Glasses',
+    title: 'Round Face Shape — Hair & Glasses',
     desc: 'As wide as it is long, with full cheeks and a soft chin. Slimming hairstyles for men and women, plus angular glasses for definition.',
     h1: 'Round Face Shape',
     sub: 'About as wide as it is long, with full cheeks and few angles. The goal: add length and definition with cut and frames.',
@@ -119,7 +119,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
   square: {
     slug: 'square',
     name: 'Square',
-    title: 'Square Face Shape — Hairstyles & Glasses',
+    title: 'Square Face Shape — Hair & Glasses',
     desc: 'Strong angular jaw and broad forehead of similar width. Softening hairstyles for men and women, plus round frames to balance the angles.',
     h1: 'Square Face Shape',
     sub: 'A broad forehead, strong jaw and sharp angles. Soften the structure with rounded cuts and curved frames.',
@@ -163,7 +163,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
   heart: {
     slug: 'heart',
     name: 'Heart',
-    title: 'Heart Face Shape — Hairstyles & Glasses',
+    title: 'Heart Face Shape — Hair & Glasses',
     desc: 'Wide forehead and cheekbones with a narrow, pointed chin. Balancing hairstyles for men and women, plus frames that widen the lower face.',
     h1: 'Heart Face Shape',
     sub: 'Wide forehead and cheekbones tapering to a pointed chin — like an inverted triangle. Balance the widths with cut and frames.',
@@ -207,7 +207,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
   oblong: {
     slug: 'oblong',
     name: 'Oblong',
-    title: 'Oblong Face Shape — Hairstyles & Glasses',
+    title: 'Oblong Face Shape — Hair & Glasses',
     desc: 'Noticeably longer than wide, with a straight cheek line. Width-adding hairstyles for men and women, plus wider frames to shorten the look.',
     h1: 'Oblong Face Shape',
     sub: 'Noticeably longer than wide, with a straight cheek line and a narrow chin. Add width and softness with cut and frames.',
@@ -251,7 +251,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
   diamond: {
     slug: 'diamond',
     name: 'Diamond',
-    title: 'Diamond Face Shape — Hairstyles & Glasses',
+    title: 'Diamond Face Shape — Hair & Glasses',
     desc: 'Narrow forehead and chin, with the cheeks as the widest point. Framing hairstyles for men and women, plus oval frames to soften the angles.',
     h1: 'Diamond Face Shape',
     sub: 'Cheekbones are the widest point, with a narrow forehead and jaw. Frame the face and fill the temples with cut and frames.',
@@ -295,7 +295,7 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
   triangle: {
     slug: 'triangle',
     name: 'Triangle',
-    title: 'Triangle Face Shape — Hairstyles & Glasses',
+    title: 'Triangle Face Shape — Hair & Glasses',
     desc: 'Narrow forehead with a broad, strong jaw — widest point at the bottom. Top-volume hairstyles for men and women, plus top-heavy frames.',
     h1: 'Triangle Face Shape',
     sub: 'Narrow forehead with a broad, strong jaw — the widest point is the bottom. Add width up top to balance.',
