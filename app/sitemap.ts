@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/site';
 import { FACE_SHAPE_ORDER } from '@/lib/faceShapes';
+import { BLOG_POSTS } from '@/lib/blogPosts';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -12,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE.url}/color-analysis`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE.url}/body-shape`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE.url}/vs`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${SITE.url}/blog`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
   ];
   const shapes: MetadataRoute.Sitemap = FACE_SHAPE_ORDER.map((s) => ({
     url: `${SITE.url}/face-shapes/${s}`,
@@ -19,5 +21,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly',
     priority: 0.7,
   }));
-  return [...base, ...shapes];
+  const posts: MetadataRoute.Sitemap = BLOG_POSTS.map((p) => ({
+    url: `${SITE.url}/blog/${p.slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+  return [...base, ...shapes, ...posts];
 }

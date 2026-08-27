@@ -54,6 +54,7 @@ const NAV = [
   { href: '/color-analysis', label: 'Color' },
   { href: '/body-shape', label: 'Body Shape' },
   { href: '/tools', label: 'All Tools' },
+  { href: '/blog', label: 'Blog' },
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -100,7 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span>© 2026 {SITE.name}</span>
             <span>
               <a href="/tools">All Tools</a> · <a href="/face-shapes/oval">7 Shapes</a> · <a href="/vs">Compare</a> ·{' '}
-              <a href="/#faq">FAQ</a>
+              <a href="/blog">Blog</a> · <a href="/#faq">FAQ</a>
             </span>
           </div>
           <div className="wrap fmeta">
