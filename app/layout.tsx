@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
@@ -65,6 +66,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${SITE.gaId}',{send_page_view:true});`}
+        </Script>
       </head>
       <body>
         <a className="skip" href="#main">

@@ -33,6 +33,8 @@ export const SITE = {
   },
   // TODO(变现): 替换为你的真实 Google AdSense 发布商 ID
   adsensePub: "ca-pub-XXXXXX",
+  // Google Analytics 4 Measurement ID（G- 开头）
+  gaId: "G-Z0PC4GSZ1T",
   tagline: "Real-time face shape detector that runs entirely in your browser.",
   description:
     "Open your camera and see your face shape in real time — no photo upload, no sign-up. Our 478-landmark detector runs in-browser and names your shape.",
