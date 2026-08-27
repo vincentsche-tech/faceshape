@@ -21,8 +21,10 @@ function resolveSiteUrl(): string {
 
 export const SITE = {
   name: "FaceShape AI",
-  // TODO(部署): 生产必须在 Vercel 配 NEXT_PUBLIC_SITE_URL=https://faceshapeai.app
-  //             自定义域绑定流程：Vercel Domains 加 faceshapeai.app + Cloudflare DNS 加 CNAME/A + Vercel 自动签 SSL
+  // TODO(部署): 生产必须在 Vercel 配 NEXT_PUBLIC_SITE_URL
+  //             默认 https://www.faceshapeai.app（与 Vercel 301 重定向主域保持一致；
+  //             若改非 www 主域，需同步把 Vercel Domains 的 redirect 改回 non-www）。
+  //             自定义域绑定：Vercel Domains 加 faceshapeai.app + Cloudflare DNS DNS-only 加 A/CNAME + Vercel 自动签 SSL
   get domain() {
     return resolveSiteUrl().replace(/^https?:\/\//, "");
   },
