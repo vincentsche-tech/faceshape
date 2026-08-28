@@ -4,6 +4,7 @@ import { useEffect, useRef, type ReactNode } from 'react';
 import Adsense from '@/components/Adsense';
 import { useLandmarker } from '@/lib/useLandmarker';
 import { trackGA4 } from '@/lib/analytics';
+import ShareButton from '@/components/ShareButton';
 
 const ShieldIcon = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -204,6 +205,9 @@ export default function LandmarkTool({
               <a className="fullguide" href={guideHref(slug)}>
                 View full guide →
               </a>
+            )}
+            {result && (
+              <ShareButton tool={tool} shape={slug} title={`My ${tool} shape is ${result.name}`} />
             )}
           </div>
           {matchItems && (

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Adsense from '@/components/Adsense';
 import { trackGA4 } from '@/lib/analytics';
+import ShareButton from '@/components/ShareButton';
 import { FACE_SHAPES } from '@/lib/faceShapes';
 
 const SHAPES = ['Oval', 'Round', 'Square', 'Heart', 'Oblong', 'Diamond', 'Triangle'];
@@ -516,6 +517,9 @@ export default function LiveDetector() {
                 <a className="fullguide" href={`/face-shapes/${slug}`}>
                   View full guide →
                 </a>
+              )}
+              {result && (
+                <ShareButton tool="face" shape={slug} title={`My face shape is ${result.name}`} />
               )}
             </div>
           <div className="matchbar">

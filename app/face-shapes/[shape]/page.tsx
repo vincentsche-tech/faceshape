@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { SITE } from '@/lib/site';
 import { FACE_SHAPES, FACE_SHAPE_ORDER, getFaceShape } from '@/lib/faceShapes';
 import { ShieldIcon, UserIcon, CpuIcon, LockIcon } from '@/components/icons';
+import ShareButton from '@/components/ShareButton';
 
 type Params = { shape: string };
 
@@ -110,6 +111,7 @@ export default async function FaceShapePage({ params }: { params: Promise<Params
               <a className="btn-secondary" href="#hair">
                 Hairstyles &amp; glasses
               </a>
+              <ShareButton tool="face" shape={d.slug} title={d.h1} />
             </div>
             <div className="trustrow">
               <span className="trustbadge primary">

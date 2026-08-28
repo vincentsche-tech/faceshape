@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { COLOR_QUESTIONS, COLOR_SEASONS, getSeason, type Season, type ColorOption } from '@/lib/colorSeasons';
 import { trackGA4 } from '@/lib/analytics';
+import ShareButton from '@/components/ShareButton';
 
 export default function ColorQuiz() {
   const [step, setStep] = useState(0);
@@ -69,6 +70,7 @@ export default function ColorQuiz() {
             <button type="button" className="btn-secondary" onClick={reset}>
               Retake quiz
             </button>
+            <ShareButton tool="color" season={result} title={`My color season is ${s.name}`} />
           </div>
         </div>
       </section>

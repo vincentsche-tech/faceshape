@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { BODY_SHAPES, getBodyShape, type BodyShapeName } from '@/lib/bodyShapes';
 import { trackGA4 } from '@/lib/analytics';
+import ShareButton from '@/components/ShareButton';
 
 export default function BodyMeasure() {
   const [unit, setUnit] = useState<'cm' | 'in'>('in');
@@ -72,6 +73,7 @@ export default function BodyMeasure() {
               <button type="button" className="btn-secondary" onClick={reset}>
                 Recalculate
               </button>
+              <ShareButton tool="body" bodyType={result} title={`My body shape is ${info.name}`} />
             </div>
           </div>
         </div>
