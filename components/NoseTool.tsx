@@ -6,6 +6,7 @@ import { classifyNose, NOSE_TIPS, NOSE_ORDER } from '@/lib/noseShapes';
 export default function NoseTool() {
   return (
     <LandmarkTool
+      tool="nose"
       title="Nose Shape Detector — Live Camera"
       subhead="Map your nose width and length proportions live in your browser — no photo upload, no sign-up."
       ctaText="Open Camera & Detect"

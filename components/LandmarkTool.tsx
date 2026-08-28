@@ -1,8 +1,9 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import Adsense from '@/components/Adsense';
 import { useLandmarker } from '@/lib/useLandmarker';
+import { trackGA4 } from '@/lib/analytics';
 
 const ShieldIcon = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -31,6 +32,7 @@ const LockIcon = (
 );
 
 interface Props {
+  tool: 'eye' | 'nose';
   title: string;
   subhead: string;
   ctaText?: string;
@@ -47,6 +49,7 @@ interface Props {
 export default function LandmarkTool({
   title,
   subhead,
+  tool,
   ctaText = 'Open Camera & Detect',
   landmarkNote = '478 landmarks',
   classify,
@@ -60,6 +63,19 @@ export default function LandmarkTool({
 
   const result = landmarks ? classify(landmarks) : null;
   const slug = result ? result.name.toLowerCase() : '';
+  const reportedRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (result && result.name !== reportedRef.current) {
+      reportedRef.current = result.name;
+      trackGA4('tool_complete', { tool, shape: result.name, confidence: result.conf });
+    }
+  }, [result, tool]);
+
+  const handleStart = () => {
+    trackGA4('tool_start', { tool });
+    startCamera();
+  };
 
   return (
     <>
@@ -71,7 +87,7 @@ export default function LandmarkTool({
             <h1>{title}</h1>
             <p className="subhead">{subhead}</p>
             <div className="ctarow">
-              <button type="button" className="btn-primary" onClick={startCamera} disabled={isLoading}>
+              <button type="button" className="btn-primary" onClick={handleStart} disabled={isLoading}>
                 {camState === 'loading' ? 'Loading model…' : ctaText}
               </button>
               <a className="btn-secondary" href="#steps">
@@ -131,7 +147,7 @@ export default function LandmarkTool({
               <button
                 type="button"
                 className="cam-cta"
-                onClick={startCamera}
+                onClick={handleStart}
                 disabled={isLoading}
                 style={{ display: mode === 'camera' && camState !== 'live' ? 'block' : 'none' }}
               >

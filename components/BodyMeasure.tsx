@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { BODY_SHAPES, getBodyShape, type BodyShapeName } from '@/lib/bodyShapes';
+import { trackGA4 } from '@/lib/analytics';
 
 export default function BodyMeasure() {
   const [unit, setUnit] = useState<'cm' | 'in'>('in');
@@ -15,7 +16,9 @@ export default function BodyMeasure() {
     const wa = parseFloat(w);
     const hi = parseFloat(h);
     if (!(sh > 0 && wa > 0 && hi > 0)) return;
-    setResult(getBodyShape(sh, wa, hi));
+    const shape = getBodyShape(sh, wa, hi);
+    setResult(shape);
+    trackGA4('tool_complete', { tool: 'body', body_type: shape });
   }
 
   function reset() {

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Adsense from '@/components/Adsense';
+import { trackGA4 } from '@/lib/analytics';
 import { FACE_SHAPES } from '@/lib/faceShapes';
 
 const SHAPES = ['Oval', 'Round', 'Square', 'Heart', 'Oblong', 'Diamond', 'Triangle'];
@@ -122,6 +123,7 @@ export default function LiveDetector() {
   const lastTRef = useRef(0);
   const lastFaceSeenRef = useRef(0);
   const rafRef = useRef<number>(0);
+  const reportedRef = useRef<string | null>(null);
 
   const [mode, setMode] = useState<'camera' | 'upload'>('camera');
   const [camState, setCamState] = useState<'idle' | 'loading' | 'detecting' | 'live' | 'error'>('idle');
@@ -182,7 +184,12 @@ export default function LiveDetector() {
               octx.arc(x, y, 1.5, 0, Math.PI * 2);
               octx.fill();
             }
-            setResult(classify(lm));
+            const r = classify(lm);
+            setResult(r);
+            if (r.name !== reportedRef.current) {
+              reportedRef.current = r.name;
+              trackGA4('tool_complete', { tool: 'face', shape: r.name, confidence: r.conf });
+            }
             setCamState('live');
             setLabel('Live — your shape updates as you move');
           } else if (t - lastFaceSeenRef.current > 5000) {
@@ -200,6 +207,8 @@ export default function LiveDetector() {
   const startCamera = useCallback(async () => {
     setMode('camera');
     setErrMsg('');
+    reportedRef.current = null;
+    trackGA4('tool_start', { tool: 'face' });
     if (typeof window !== 'undefined' && !window.isSecureContext) {
       setCamState('error');
       setErrMsg('Camera requires HTTPS or localhost. Open the https:// link.');
@@ -296,7 +305,12 @@ export default function LiveDetector() {
               octx.arc(x, y, 2, 0, Math.PI * 2);
               octx.fill();
             }
-            setResult(classify(lm));
+            const r = classify(lm);
+            setResult(r);
+            if (r.name !== reportedRef.current) {
+              reportedRef.current = r.name;
+              trackGA4('tool_complete', { tool: 'face', shape: r.name, confidence: r.conf });
+            }
             setCamState('live');
             setLabel('Detected from your photo');
           } else {

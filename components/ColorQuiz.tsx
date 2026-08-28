@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { COLOR_QUESTIONS, COLOR_SEASONS, getSeason, type Season, type ColorOption } from '@/lib/colorSeasons';
+import { trackGA4 } from '@/lib/analytics';
 
 export default function ColorQuiz() {
   const [step, setStep] = useState(0);
@@ -18,7 +19,11 @@ export default function ColorQuiz() {
     if (opt.c) nv.c.push(opt.c);
     setVotes(nv);
     if (step + 1 < total) setStep(step + 1);
-    else setResult(getSeason(nv));
+    else {
+      const season = getSeason(nv);
+      setResult(season);
+      trackGA4('tool_complete', { tool: 'color', season });
+    }
   }
 
   function reset() {

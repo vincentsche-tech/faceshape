@@ -2,6 +2,7 @@ import './globals.css';
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import { SITE } from '@/lib/site';
+import ScrollDepth from '@/components/ScrollDepth';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </nav>
         <main id="main">{children}</main>
+        <ScrollDepth />
         <footer>
           <div className="wrap">
             <span>© 2026 {SITE.name}</span>
