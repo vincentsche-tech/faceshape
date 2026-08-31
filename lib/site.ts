@@ -35,9 +35,9 @@ export const SITE = {
   adsensePub: "ca-pub-XXXXXX",
   // Google Analytics 4 Measurement ID（G- 开头）
   gaId: "G-Z0PC4GSZ1T",
-  // Microsoft Clarity 项目 ID（建项目于 https://clarity.microsoft.com 后替换）。
-  // 未替换为真实 ID 前，layout.tsx 的 guard 不会注入脚本，不会发坏请求。
-  clarityId: "REPLACE_WITH_CLARITY_PROJECT_ID",
+  // Microsoft Clarity 项目 ID（建项目于 https://clarity.microsoft.com）。
+  // 真实 ID 已填入，部署后 layout.tsx 的 guard 放行并注入脚本。
+  clarityId: "yar89oj9sd",
   tagline: "Real-time face shape detector that runs entirely in your browser.",
   description:
     "Open your camera and see your face shape in real time — no photo upload, no sign-up. Our 478-landmark detector runs in-browser and names your shape.",
