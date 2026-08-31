@@ -76,6 +76,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script id="ga-init" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${SITE.gaId}',{send_page_view:true});`}
         </Script>
+        {/* Microsoft Clarity：GA4 告诉你「发生了什么」，Clarity 让你看到「为什么」。
+            占位 ID 未替换前不注入，避免请求无效 tag。替换 SITE.clarityId 后即生效。 */}
+        {SITE.clarityId && SITE.clarityId !== 'REPLACE_WITH_CLARITY_PROJECT_ID' && (
+          <Script id="ms-clarity" strategy="afterInteractive">
+            {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${SITE.clarityId}");`}
+          </Script>
+        )}
       </head>
       <body>
         <a className="skip" href="#main">
