@@ -46,8 +46,8 @@ export async function generateMetadata({
     title,
     description: desc,
     alternates: { canonical: `/face-shapes/compare/${pair}` },
-    openGraph: { title, description, url: `${SITE.url}/face-shapes/compare/${pair}` },
-    twitter: { title, description },
+    openGraph: { title, description: desc, url: `${SITE.url}/face-shapes/compare/${pair}` },
+    twitter: { title, description: desc },
   };
 }
 
@@ -271,7 +271,7 @@ export default async function ComparePage({ params }: { params: Promise<Params> 
             {otherPairs.map((k) => {
               const o = FACE_SHAPES[k];
               return (
-                <a className="comparecard" key={k} href={`/face-shapes/compare/${a}-vs-${k}`}>
+                <a className="comparecard" key={k} href={`/face-shapes/compare/${pairSlug(a, k)}`}>
                   <svg viewBox="0 0 200 240" className="cmpfig" aria-hidden="true">
                     <path d={o.svg} fill="none" stroke="#6D5DFC" strokeWidth="3" strokeLinejoin="round" />
                   </svg>
