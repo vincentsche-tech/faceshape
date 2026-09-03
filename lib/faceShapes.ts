@@ -348,3 +348,11 @@ export function getFaceShape(slug: string): FaceShape | undefined {
 export function faceShapeSlugs(): string[] {
   return FACE_SHAPE_ORDER;
 }
+
+// 规范对比 slug：按 FACE_SHAPE_ORDER 顺序生成 `a-vs-b`，
+// 与 compare/[pair] 路由的 generateStaticParams、sitemap.ts 完全一致，避免 dynamicParams=false 下 404。
+export function pairSlug(a: string, b: string): string {
+  const ia = FACE_SHAPE_ORDER.indexOf(a);
+  const ib = FACE_SHAPE_ORDER.indexOf(b);
+  return ia <= ib ? `${a}-vs-${b}` : `${b}-vs-${a}`;
+}

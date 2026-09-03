@@ -213,6 +213,18 @@ footer .fmeta a{color:#C9C6E8;}
 .cmpname{font-size:17px;font-weight:600;color:var(--head);}
 .cmpdef{font-size:13px;line-height:1.5;color:var(--body);}
 
+/* compare your shape → compare pages (internal link equity) */
+.comparevsec{background:var(--tint);padding:48px 0;}
+.comparevsec h2{font-size:28px;font-weight:600;color:var(--head);margin-bottom:8px;}
+.comparevsec .compsub{font-size:16px;color:var(--muted);margin-bottom:24px;}
+.vslist{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.vslink{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1.5px solid var(--lilac);border-radius:14px;padding:16px 20px;font-size:16px;font-weight:600;color:var(--head);transition:.15s;}
+.vslink:hover{border-color:var(--purple);transform:translateY(-2px);box-shadow:0 8px 20px rgba(109,93,252,0.12);color:var(--purple);}
+.vsarrow{color:var(--purple);font-weight:700;}
+@media (max-width:1100px){
+  .vslist{grid-template-columns:repeat(2,1fr);}
+}
+
 /* what-you-get */
 .whatget{background:#fff;padding:40px 0;}
 .whatget h2{font-size:28px;font-weight:600;color:var(--head);margin-bottom:24px;}

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { SITE } from '@/lib/site';
-import { FACE_SHAPES, FACE_SHAPE_ORDER, getFaceShape } from '@/lib/faceShapes';
+import { FACE_SHAPES, FACE_SHAPE_ORDER, getFaceShape, pairSlug } from '@/lib/faceShapes';
 import { ShieldIcon, UserIcon, CpuIcon, LockIcon } from '@/components/icons';
 import ShareButton from '@/components/ShareButton';
 
@@ -308,6 +308,26 @@ export default async function FaceShapePage({ params }: { params: Promise<Params
                   </svg>
                   <div className="cmpname">{o.name}</div>
                   <div className="cmpdef">{o.shortDef}</div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="comparevsec" id="vs">
+        <div className="wrap">
+          <h2>Compare {d.name} side by side</h2>
+          <div className="compsub">
+            See exactly how {d.name} differs from each of the other six face shapes, feature by feature.
+          </div>
+          <div className="vslist">
+            {FACE_SHAPE_ORDER.filter((k) => k !== d.slug).map((k) => {
+              const o = FACE_SHAPES[k];
+              return (
+                <a className="vslink" key={k} href={`/face-shapes/compare/${pairSlug(d.slug, k)}`}>
+                  <span className="vsa">{d.name} vs {o.name}</span>
+                  <span className="vsarrow" aria-hidden="true">→</span>
                 </a>
               );
             })}
