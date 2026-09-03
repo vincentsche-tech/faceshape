@@ -27,5 +27,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly',
     priority: 0.6,
   }));
-  return [...base, ...shapes, ...posts];
+  const compares: MetadataRoute.Sitemap = [];
+  for (let i = 0; i < FACE_SHAPE_ORDER.length; i++) {
+    for (let j = i + 1; j < FACE_SHAPE_ORDER.length; j++) {
+      compares.push({
+        url: `${SITE.url}/face-shapes/compare/${FACE_SHAPE_ORDER[i]}-vs-${FACE_SHAPE_ORDER[j]}`,
+        lastModified: now,
+        changeFrequency: 'monthly',
+        priority: 0.6,
+      });
+    }
+  }
+  return [...base, ...shapes, ...compares, ...posts];
 }
