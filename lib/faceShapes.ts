@@ -70,6 +70,26 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
         q: 'Best glasses for an oval face?',
         a: 'Most frame shapes suit an oval face; rounded rectangles and aviators are safe, classic picks.',
       },
+      {
+        q: 'How can I tell if my face is oval?',
+        a: 'An oval face is noticeably longer than it is wide, with a gently rounded hairline and chin and balanced, even proportions — no single feature dominates.',
+      },
+      {
+        q: 'What hairstyles should an oval face avoid?',
+        a: 'Almost any cut flatters oval, but very heavy, chin-covering styles or blunt bobs can dull its natural balance. Keep some length or softness around the face.',
+      },
+      {
+        q: 'Do bangs suit an oval face?',
+        a: 'Yes — oval is flexible enough for most bangs, from curtain to side-swept. They add personality without throwing off your proportions.',
+      },
+      {
+        q: 'Oval vs round face shape — what is the difference?',
+        a: 'An oval face is longer than wide with a narrow, soft chin; a round face is as wide as it is long with full cheeks and no angles. Oval reads more elongated.',
+      },
+      {
+        q: 'What sunglasses suit an oval face?',
+        a: 'Most shapes suit oval — rounded rectangles, aviators and cat-eyes are all safe. Avoid oversized frames that overwhelm the balanced proportions.',
+      },
     ],
   },
   round: {
@@ -114,6 +134,26 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
         q: 'Best glasses for a round face?',
         a: 'Angular, rectangular frames add definition; avoid small round frames that emphasize roundness.',
       },
+      {
+        q: 'How can I tell if my face is round?',
+        a: 'If your face is about as wide as it is long, with full cheeks and a soft, rounded chin and almost no angles, it is round.',
+      },
+      {
+        q: 'What hairstyles should a round face avoid?',
+        a: 'Avoid chin-length bobs and centre parts that emphasize roundness; tight curls at the sides add width you do not want.',
+      },
+      {
+        q: 'Do bangs suit a round face?',
+        a: 'Side-swept and long, layered bangs work well; they elongate the face. Avoid short, rounded baby bangs that shorten it further.',
+      },
+      {
+        q: 'Round vs oval face shape — how to tell them apart?',
+        a: 'A round face is as wide as it is long with full cheeks; an oval face is clearly longer than wide with a softer, narrow chin and no wide cheeks.',
+      },
+      {
+        q: 'What sunglasses suit a round face?',
+        a: 'Angular, rectangular or wayfarer sunglasses add definition; skip small round frames that echo the roundness.',
+      },
     ],
   },
   square: {
@@ -157,6 +197,26 @@ export const FACE_SHAPES: Record<string, FaceShape> = {
       {
         q: 'Best glasses for a square face?',
         a: 'Round or oval, rimless frames soften the angles; skip heavy square frames.',
+      },
+      {
+        q: 'How can I tell if my face is square?',
+        a: 'Measure your forehead, cheekbones and jaw — if all three are close in width and your jawline is sharp and angular, you likely have a square face.',
+      },
+      {
+        q: 'What hairstyles should a square face avoid?',
+        a: 'Avoid blunt, jaw-length bobs and centre parts that emphasize the jaw; very slicked-back looks that bare the sharp angles also work against you.',
+      },
+      {
+        q: 'Do bangs suit a square face shape?',
+        a: 'Yes — soft, side-swept or wispy bangs soften the forehead and break up the angles. Avoid heavy, straight-across bangs that square off the top.',
+      },
+      {
+        q: 'Square vs round face shape — what is the difference?',
+        a: 'A square face has angular, equal-width features and a strong jaw; a round face is soft and curved with similar width and height and no sharp angles.',
+      },
+      {
+        q: 'What sunglasses suit a square face?',
+        a: 'Round, oval or rimless sunglasses balance the angles; skip thick square frames that double the sharpness of your jaw.',
       },
     ],
   },
