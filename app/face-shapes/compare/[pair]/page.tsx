@@ -40,8 +40,11 @@ export async function generateMetadata({
   const A = getFaceShape(a);
   const B = getFaceShape(b);
   if (!A || !B) return {};
-  const title = `${A.name} vs ${B.name} Face Shape — How to Tell Them Apart`;
-  const desc = `Compare the ${A.name} and ${B.name} face shapes side by side: length-to-width, jaw and forehead, flattering hairstyles and glasses. See which one is yours.`;
+  // Title 控制在「正文 ≤46 字符」——layout 模板会再追加 " · FaceShape AI"(16)，
+  // 旧版 "— How to Tell Them Apart" 合计 70 字符，在 SERP 会被截断，差异化信息丢失。
+  const title = `${A.name} vs ${B.name} Face Shape: How to Tell`;
+  // Description 首句直接给答案（AI Overview / 精选摘要更易抽取），而非泛泛的 "Compare side by side"。
+  const desc = `${A.name} faces are ${A.tell}. ${B.name} faces are ${B.tell}.`;
   return {
     title,
     description: desc,
@@ -58,6 +61,10 @@ export default async function ComparePage({ params }: { params: Promise<Params> 
   const B = getFaceShape(b);
   if (!A || !B || a === b) notFound();
 
+  // 可见 FAQ 与 FAQPage JSON-LD 共用同一段字符串，避免两处漂移。
+  const quickAnswer = `${A.name} faces are ${A.tell}, while ${B.name} faces are ${B.tell}.`;
+  const tellAnswer = `${quickAnswer} In proportions: ${A.name} — ${A.ratio} ${B.name} — ${B.ratio} The live camera detector names your shape in seconds so you don't have to guess.`;
+
   const faqLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -67,7 +74,7 @@ export default async function ComparePage({ params }: { params: Promise<Params> 
         name: `How do I tell a ${A.name} face from a ${B.name} face?`,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `Start with proportions. ${A.name} faces: ${A.ratio} ${B.name} faces: ${B.ratio} Then check the jawline and forehead — ${A.name} is ${A.shortDef} while ${B.name} is ${B.shortDef} The live camera detector names your shape in seconds so you don't have to guess.`,
+          text: tellAnswer,
         },
       },
       {
@@ -119,6 +126,21 @@ export default async function ComparePage({ params }: { params: Promise<Params> 
         <div className="wrap">
           <div className="shapeleft">
             <h1>{A.name} vs {B.name} Face Shape</h1>
+            {/* 首屏直答块：给 AI Overview / 精选摘要一个可整段抽取的答案，同时让用户 3 秒内判断 */}
+            <p
+              style={{
+                margin: '14px 0 0',
+                padding: '12px 16px',
+                background: 'rgba(109, 93, 252, 0.08)',
+                borderLeft: '3px solid #6D5DFC',
+                borderRadius: 8,
+                fontSize: 15.5,
+                lineHeight: 1.55,
+              }}
+            >
+              <b>The short answer:</b> {quickAnswer} Start with the jawline and forehead — those
+              two give the answer fastest.
+            </p>
             <p className="subhead">
               Not sure which one is yours? Here&apos;s the honest side-by-side — proportions,
               jaw and forehead, and the cuts and frames that flatter each.
@@ -290,9 +312,7 @@ export default async function ComparePage({ params }: { params: Promise<Params> 
           <div className="fitem">
             <div className="q">How do I tell a {A.name} face from a {B.name} face?</div>
             <div className="a">
-              Start with proportions. {A.name} faces: {A.ratio} {B.name} faces: {B.ratio} Then check
-              the jawline and forehead — {A.name} is {A.shortDef} while {B.name} is {B.shortDef} The
-              live camera detector names your shape in seconds so you don&apos;t have to guess.
+              {tellAnswer}
             </div>
           </div>
           <div className="fitem">
